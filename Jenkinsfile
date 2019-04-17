@@ -1,32 +1,7 @@
 pipeline {
-    agent none
-    stages {
-        stage('build-a') {
-             agent {
-                dockerfile {
-                    label 'my-apache2'
-                    additionalBuildArgs  '-t my-apache2 '
-                    args '-dit --name my-running-app-a -p 8080:80 my-apache2'
-                }
-            }
-            steps {
-                echo 'container a!'
-            }
-        }
-        stage('build-b') {
-             agent {
-                dockerfile {
-                    label 'my-apache2'
-                    additionalBuildArgs  '-t my-apache2 '
-                    args '-dit --name my-running-app-b -p 8080:80 my-apache2'
-                }
-            }
-            steps {
-                echo 'container b!'
-            }
-        }
-        stage() {
-            agent { label 'my-apache2' }
+    agent any
+    stages {        
+        stage('build') {
             steps {
                 sh 'date'
             }
