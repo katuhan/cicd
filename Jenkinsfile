@@ -9,8 +9,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'docker build -t my-apache2 .'
-                sh 'docker run -dit --name my-running-app -p 8080:80 my-apache2'
+                echo "hello-world"
             }
         }
     }
