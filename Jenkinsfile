@@ -8,15 +8,16 @@ pipeline {
     triggers {
         GenericTrigger(
             genericVariables: [
-                [key: 'ref', value: '$.ref']
+                [key: 'ref', value: '$.ref'],
+                [key: 'reftype', value: '$.ref_type']
             ],
             causeString: 'Triggered on $ref',
-            token: 'token123',
+            token: 'hello',
             printContributedVariables: true,
             printPostContent: true,
             silentResponse: false,
-            regexpFilterText: '$ref',
-            regexpFilterExpression: 'refs/heads/.*'
+            regexpFilterText: '$reftype=$ref',
+            regexpFilterExpression: 'tag=MODULE.*'
         )
     }
     
