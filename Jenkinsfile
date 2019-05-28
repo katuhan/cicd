@@ -16,7 +16,7 @@ pipeline {
      silentResponse: false,
     
      regexpFilterText: '$ref',
-     regexpFilterExpression: 'refs/heads/*'
+     regexpFilterExpression: 'refs/heads/.*'
     )
   }
   stages {        
