@@ -19,7 +19,7 @@ pipeline {
      regexpFilterExpression: 'refs/heads/*'
     )
   }
-    stages {        
+  stages {        
         stage('build') {
             steps {
                 sh 'date'    
