@@ -23,7 +23,7 @@ pipeline {
     stages {        
           stage('build') {
               steps {
-                  printenv | sort
+                  sh 'printenv | sort'
                   sh 'date' 
              }
           }
