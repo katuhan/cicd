@@ -1,31 +1,33 @@
 pipeline {
-  agent any
-  triggers {
-    GenericTrigger(
-     genericVariables: [
-      [key: 'ref', value: '$.ref']
-     ],
-     
-     causeString: 'Triggered on $ref',
-     
-     token: 'token123',
-     
-     printContributedVariables: true,
-     printPostContent: true,
-     
-     silentResponse: false,
+    agent any
+
+    options { 
+        timestamps() 
+    }
+
+    triggers {
+        GenericTrigger(
+            genericVariables: [
+                [key: 'ref', value: '$.ref']
+            ],
+            causeString: 'Triggered on $ref',
+            token: 'token123',
+            printContributedVariables: true,
+            printPostContent: true,
+            silentResponse: false,
+            regexpFilterText: '$ref',
+            regexpFilterExpression: 'refs/heads/.*'
+        )
+    }
     
-     regexpFilterText: '$ref',
-     regexpFilterExpression: 'refs/heads/.*'
-    )
-  }
-  stages {        
-        stage('build') {
-            steps {
-                sh 'date' 
-           }
-        }
-  }
+    stages {        
+          stage('build') {
+              steps {
+                  printenv | sort
+                  sh 'date' 
+             }
+          }
+    }
 
     post {
         always {
@@ -36,12 +38,6 @@ pipeline {
         }
         failure {
             echo 'something failed'
-        }
-        unstable {
-            echo 'marked as unstable'
-        }
-        changed {
-            echo 'the state of the Pipeline has changed'
         }
     }
 }
