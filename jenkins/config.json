@@ -1,0 +1,4 @@
+{
+    "jobs": ["job1", "job2"], 
+    "reps": "https://github.com/katuhan/hello-world.git",
+}
